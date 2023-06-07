@@ -1,5 +1,5 @@
 const http = require("http");
-const { logEvents }  = require("./logEvents");
+const logEvents = require("./logEvents");
 const path = require("path");
 const fileSys = require("fs");
 const fileSysPromises = require("fs").promises;
