@@ -44,26 +44,26 @@ const server = http.createServer((req, res) => {
 
     //checking determining the content-type based on the request extname
     switch (extensionName) {
-        case '.css':
-            contentType = 'text/css';
+        case ".css":
+            contentType = "text/css";
             break;
-        case '.js':
-            contentType = 'text/javascript';
+        case ".js":
+            contentType = "text/javascript";
             break;
-        case '.json':
-            contentType = 'application/json';
+        case ".json":
+            contentType = "application/json";
             break;
-        case '.jpg':
-            contentType = 'image/jpeg';
+        case ".jpg":
+            contentType = "image/jpeg";
             break;
-        case '.png':
-            contentType = 'image/png';
+        case ".png":
+            contentType = "image/png";
             break;
-        case '.txt':
-            contentType = 'text/plain';
+        case ".txt":
+            contentType = "text/plain";
             break;
         default:
-            contentType = 'text/html';
+            contentType = "text/html";
     }
 
     let filePath;
