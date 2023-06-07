@@ -6,7 +6,7 @@ const path = require("path");
 
 // format(new Date(), "yyyyMMdd\tHH:mm:ss")
 
- const logEvents = async (message) => {
+ const logEvents = async (message, logName) => {
     const dateTime = `${format(new Date(), "yyyyMMdd\tHH:mm:ss")}`;
     const logItem = `${dateTime}\t${uuid()}\t${message}\n`;
     console.log(logItem);
@@ -20,7 +20,7 @@ const path = require("path");
             })
         }
 
-        await fsPromises.appendFile(path.join(__dirname, "logs", "eventLogs.txt"), logItem);
+        await fsPromises.appendFile(path.join(__dirname, "logs", logName), logItem);
     }catch(err) {
         console.error(err)
     }

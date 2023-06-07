@@ -3,6 +3,11 @@ const { logEvents }  = require("./logEvents");
 const path = require("path");
 const fileSys = require("fs");
 const fileSysPromises = require("fs").promises;
+const eventEmitter = require("events");
+
+class MyEmitter extends eventEmitter {};
+const emitter = new MyEmitter();
+emitter.on("log", (msg, logName) => logEvents(msg, logName));
 
 const PORT = process.env.PORT || 4000;
 
@@ -24,6 +29,7 @@ const serveFile = async (filePath, contentType, response) => {
         JSON.stringify(data) : data);
     }catch(err) {
         console.log(err)
+        emitter.emit("log", `${err.name}: ${err.message}`, "errLog.txt");
         response.statusCode = 500;
         response.end();
     }
@@ -31,6 +37,7 @@ const serveFile = async (filePath, contentType, response) => {
 
 const server = http.createServer((req, res) => {
     console.log(req.url, req.method)
+    emitter.emit("log", `${req.url}\t${req.method}`, "reqLog.txt");
 
     const extensionName = path.extname(req.url);
     let contentType;
